@@ -3,20 +3,44 @@ var todoFieldInput = $("input");
 $("form").submit(function(e) {
 	e.preventDefault();
 	$.post("/newtodo", { todo: todoFieldInput.val() })
-	$("<li>").text(todoFieldInput.val()).append('<input type="checkbox">').appendTo("ul");
+	var checkedItem = $("<li>").text(todoFieldInput.val()).append('<input class="check_todo" type="checkbox">').appendTo("ul");
+	$('.check_todo').click(function() {
+		var todo = $(this).parent();
+		if(checkedItem === ('checked')) {
+			todo.toggleClass('checked');
+		} else {
+			todo.toggleClass('checked');
+		}
+		
+	});
 	this.reset();
 });
 
 $.getJSON("/new", function(response) {
 	$.each(response, function(index, text) {
-		$("<li>").text(text.todo).appendTo("ul"); 
+		var checkedItem = $("<li>").text(text.todo).append('<input class="check_todo" type="checkbox">').appendTo("ul"); 
+		$('.check_todo').click(function() {
+		var todo = $(this).parent();
+		if(checkedItem === ('checked')) {
+			todo.toggleClass('checked');
+		} else {
+			todo.toggleClass('checked');
+		}
+		
+	});
+
 	});
 });
 
-// $('input:checkbox').live('change', function(){
-//     if($(this).is(':checked')){
-//         alert('checked');
-//     } else {
-//         alert('un-checked');
-//     }
-// });
+
+// var checkedItem = $("<li>").text(todoFieldInput.val()).append('<input class="check_todo" type="checkbox">').appendTo("ul");
+// 	$('.check_todo').click(function() {
+// 		var todo = $(this).parent();
+// 		if(checkedItem === ('checked')) {
+// 			todo.toggleClass('checked');
+// 		} else {
+// 			todo.toggleClass('checked');
+// 		}
+		
+// 	});
+
