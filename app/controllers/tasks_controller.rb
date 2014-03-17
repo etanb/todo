@@ -14,4 +14,13 @@ class TasksController < ApplicationController
 		render json: @task
 	end
 
+	def update
+		@task = Task.find_by(id: params[:id])
+    	@task.update(completed: params[:completed])
+    	render json: @task
+	end
+
+	def destroy
+	end
+
 end

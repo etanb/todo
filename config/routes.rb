@@ -1,6 +1,10 @@
 Todo::Application.routes.draw do
   root to: "tasks#index"
 
-  post 'newtodo' => 'tasks#create'
-  get 'new' => 'tasks#new'
+  resources :tasks
+  # get 'new' => 'tasks#new'
+  # post 'newtodo' => 'tasks#create'
+  # put 'updatetodo' => 'tasks#update'
+  # delete 'deletetodo' => 'tasks#destroy'
+
 end
