@@ -6,23 +6,26 @@ function renderTasks() {
 			// console.log(taskId)
 			var checkbox = document.createElement('input');
 			checkbox.type = "checkbox";
-			checkbox.addEventListener("change", function() {
+			checkbox.addEventListener("click", function() {
 				$(this).parent().toggleClass('checked');
 				$.ajax({
 	    			url: '/tasks/' + task.id,
 	    			type: "PUT",
 	    			data: {id: task.id, completed: !task.completed}
 				});
+
+				
 			}) 
-			$("<li>").text(task.todo).append(checkbox).appendTo("ul");
+			var itemList = $("<li>").text(task.todo).append(checkbox).appendTo("ul");
 			if(task.completed === true) {
 				$(checkbox).prop('checked', true);
 				$(checkbox).parent().addClass( 'checked' );
 			}
-
 		});
 	});
 };
+
+renderTasks();
 
 $("form").submit(function(e) {
 	e.preventDefault();
@@ -34,9 +37,10 @@ $("form").submit(function(e) {
 
 	})
 	$("<li>").text(todoFieldInput.val()).append(checkbox).appendTo("ul");
-		this.reset();
+	
+	this.reset();
 	});
-renderTasks();
+
 
 
 
